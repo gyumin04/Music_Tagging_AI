@@ -26,3 +26,6 @@
  * **NLP Library** : Hugging Face transformers
  * **Evaluation** : seqeval
  * **Model** : bert-base-multilingual-cased
+
+## 모델 사용
+![music_tagging_ai](https://github.com/user-attachments/assets/62aa218b-44ce-4ed3-bcb2-0d17c875f480)
