@@ -49,11 +49,11 @@ for idx in range(len(music_df)):
     attention_mask_list.append(attention_mask)
     labels_list.append(labels)
 
-max_lan = len(max(input_ids, key=len))
+max_len = len(max(input_ids, key=len))
 
 for i in range(len(input_ids)):
-    if len(input_ids[i]) < max_lan:
-        for j in range(max_lan - len(input_ids[i])):
+    if len(input_ids[i]) < max_len:
+        for j in range(max_len - len(input_ids[i])):
             input_ids[i].append(0)
             attention_mask_list[i].append(0)
             labels_list[i].append(-100)
@@ -214,3 +214,7 @@ f1_report = compute_f1_scores(pred_ids, test_labels_final, id_to_tag)
 
 print("\n--- F1-Score 평가 보고서 ---")
 print(f1_report)
+
+save_directory = "D:/Music_Tagging_AI/model"
+model.save(save_directory)
+tokenizer.save_pretrained(save_directory)

@@ -4,3 +4,5 @@ transformers==4.30.0
 scikit-learn
 seqeval
 hf_xet
+Flask
+flask-cors
