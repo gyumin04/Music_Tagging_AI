@@ -28,4 +28,5 @@
  * **Model** : bert-base-multilingual-cased
 
 ## 모델 사용
-![music_tagging_ai](https://github.com/user-attachments/assets/62aa218b-44ce-4ed3-bcb2-0d17c875f480)
+
+![music_tagging_ai](https://github.com/user-attachments/assets/4fc8cf7c-7378-45b2-9e5a-a07684058976)
