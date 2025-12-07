@@ -217,4 +217,3 @@ print(f1_report)
 
 save_directory = "D:/Music_Tagging_AI/model"
 model.save(save_directory)
-tokenizer.save_pretrained(save_directory)
