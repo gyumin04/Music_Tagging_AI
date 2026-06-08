@@ -42,7 +42,29 @@
   * 국문/영문 병기 시 (예: `뉴진스(NewJeans)`) 해당 아티스트의 국적(주 활동 국가)만 인정
 * **SONG (원곡명)**
   * 곡의 순수 제목만 포함 (리믹스, 라이브, 커버 라이팅 부가 정보인 `(Prod. By ~)`, `[Live]`, `Cover` 등은 태그에서 제외).
+### 데이터 처리 및 태깅 예시
 
+모델의 입력 구조와 BIO 태깅 스키마가 실제로 어떻게 적용되는지 보여주는 대표적인 예시입니다.
+
+#### 예시 1) 기존 데이터셋 패턴 (SONG - ARTIST)
+* **Raw Data (원본 메타데이터)**
+  * `Title (영상 제목)`: "밤편지 (Through the Night) - IU"
+  * `Channel Name (채널명)`: "이지금 [IU] - Topic"
+* **Model Input (콤마 `,` 구분자가 도입된 전처리 시퀀스)**
+  * `Input`: "밤편지 (Through the Night) - IU , 이지금 [IU] - Topic"
+* **Model Output (최종 BIO 태깅 결과)**
+  * 밤편지(`B-SONG`) (`O`) (`O`) (`O`) -(`O`) IU(`B-ARTIST`) ,(`O`) 이지금(`O`) [`O`] IU(`O`) -(`O`) Topic(`O`)
+  * *주석: 가이드라인에 따라 곡명 뒤의 부가 정보 `(Through the Night)` 및 채널명의 플랫폼 노이즈는 태깅에서 제외됩니다.*
+
+#### 예시 2) OOD 데이터셋 패턴 (ARTIST - SONG)
+* **Raw Data (원본 메타데이터)**
+  * `Title (영상 제목)`: "NewJeans (뉴진스) 'Ditto' Official MV"
+  * `Channel Name (채널명)`: "HYBE LABELS"
+* **Model Input (전처리 시퀀스)**
+  * `Input`: "NewJeans (뉴진스) 'Ditto' Official MV , HYBE LABELS"
+* **Model Output (양방향 데이터 증강 적용 후 정상 예측 결과)**
+  * NewJeans(`O`) (`O`) 뉴진스(`B-ARTIST`) (`O`) 'Ditto'(`B-SONG`) Official(`O`) MV(`O`) ,(`O`) HYBE(`O`) LABELS(`O`)
+  * *주석: 국영문 병기 시 주 활동 국가의 언어인 `뉴진스`만 ARTIST로 인정하며, 곡명인 `'Ditto'`를 정확히 격리합니다.*
 <br>
 
 ## Dataset & Language Analysis
@@ -81,7 +103,7 @@
 
 <br>
 
-## out-of-Distribution (OOD)
+## Out-of-Distribution (OOD)
 
 학습 데이터셋에 포함되지 않았던 **완벽히 새로운 도메인(K-Pop 아이돌 뮤직비디오)의 100개 샘플**을 투입하여 모델의 범용 일반화 성능을 검증하였습니다.
 
