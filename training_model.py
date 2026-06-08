@@ -20,7 +20,7 @@ attention_mask_list = []
 labels_list = []
 
 for idx in range(len(music_df)):
-    text_words = tokenizer.tokenize(music_df.loc[idx, 'title'] + " " + music_df.loc[idx, 'channel_name'])
+    text_words = tokenizer.tokenize(music_df.loc[idx, 'title'] + ", " + music_df.loc[idx, 'channel_name'])
     labels = [0] * len(text_words)
     attention_mask = [1] * len(text_words)
 
@@ -97,7 +97,7 @@ test_dataset = tf.data.Dataset.from_tensor_slices((test_inputs, test_labels))
 
 NUM_LABELS = 5
 DROPOUT_RATE = 0.2
-CLASS_WEIGHTS = np.array([0.2, 2, 2, 2, 2], dtype=np.float32)
+CLASS_WEIGHTS = np.array([0.1, 5, 5, 5, 5], dtype=np.float32)
 WEIGHTS_TENSOR = tf.constant(CLASS_WEIGHTS, dtype=tf.float32)
 
 
@@ -153,7 +153,7 @@ model.compile(optimizer=optimizer,
 early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
 
 BATCH_SIZE = 16
-EPOCHS = 20
+EPOCHS = 15
 
 train_dataset = train_dataset.shuffle(1000).batch(BATCH_SIZE)
 val_dataset = val_dataset.shuffle(1000).batch(BATCH_SIZE)

@@ -2,3 +2,6 @@ venv/
 data/
 __pycache__
 .gitgnore
+model_re
+train_modle_re.py
+music_data_perfect.csv
