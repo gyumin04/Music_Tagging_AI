@@ -103,6 +103,30 @@
 
 <br>
 
+## Boundary Marker 실험
+
+| Model | 실성능 |
+|---------|---------:|
+| Baseline | 60% |
+| SEP | 72% |
+| Comma | 91% |
+| Comma + SEP | 92% |
+
+* ### 분석
+
+SEP Token과 Segment Embedding을 활용하여
+title과 channel_name의 경계를 명시적으로 제공했을 때
+실성능이 60% → 72%로 상승하였다.
+
+다만 오탐 사례 분석 결과,
+영문 제목이 병기된 데이터에서 예측 실패가 집중적으로 발생하였다.
+
+반면 Comma Boundary Marker는
+국영문 병기 데이터에서도 높은 강건성을 보이며
+91%의 실성능을 기록하였다.
+
+<br>
+
 ## Out-of-Distribution (OOD)
 
 학습 데이터셋에 포함되지 않았던 **완벽히 새로운 도메인(K-Pop 아이돌 뮤직비디오)의 100개 샘플**을 투입하여 모델의 범용 일반화 성능을 검증하였습니다.
