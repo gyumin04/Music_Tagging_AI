@@ -105,12 +105,12 @@
 
 ## Boundary Marker 실험
 
-| Model | 실성능 |
-|---------|---------:|
-| **Baseline** | 60% |
-| **SEP** | 72% |
-| **Comma** | 91% |
-| **Comma + SEP** | 92% |
+| Model | 실성능 | 비고 |
+|---------|---------:|---------|
+| **Baseline** | 60% | 단순 공백으로 결합 |
+| **SEP** | 72% | SEP Token과 Segment Embedding을 활용 |
+| **Comma** | 91% | Comma(,)로 결합 |
+| **Comma + SEP** | 92% | SEP Token과 Segment Embedding을 활용 및 Comma(,) 결합 |
 
 * ### 분석
 
